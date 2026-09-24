@@ -29,15 +29,9 @@
   $datos=[
     "cocacola" => array("text" => "Coca cola" , "precio" =>2.1),
     "pepsicola" =>array("text"=>"Pepsi Cola", "precio" =>2),
-    "fantaNaranja"=>array("text" =>"Fanta Naranja","precio"=>2.5),
-    "trinaManzana"=>array("text"=>"Trina Manzana","precio"=>2.3)
+    "fantanaranja"=>array("text" =>"Fanta Naranja","precio"=>2.5),
+    "trinamanzana"=>array("text"=>"Trina Manzana","precio"=>2.3)
   ];
-  $opcion1 = $_GET["opcion1"];
-  $nomeBebida = $datos[$opcion1]["text"];
-  $precioBebida = $datos[$opcion1]["precio"];
-  $unidades= $_GET["vunits"];
-  echo "You have asked for ".$unidades." units of ".$nomeBebida. "and the price is: ". $precioBebida*$unidades;
-
 
   function test_input($data) {
   $data = trim($data);
@@ -45,6 +39,21 @@
   $data = htmlspecialchars($data);
   return $data;
 }
+
+$errUnits="";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $opcion1 = $_POST["opcion1"];
+  $nomeBebida = $datos[$opcion1]["text"];
+  $precioBebida = $datos[$opcion1]["precio"];
+    if (empty($_POST["vunits"])) {
+      $errUnits = "units is required";
+    } else {
+      $unidades = test_input($_POST["vunits"]);
+    }
+    if ($errUnits == "" ){
+     echo "You have asked for ".$unidades." units of ".$nomeBebida. "and the price is: ". $precioBebida*$unidades;
+    }
+  }
 ?>
   </body>
 </html>
