@@ -103,9 +103,9 @@ function test_input($data) {
   <br>
   Single Sing-on to the following;
   <br>
-  <input type="radio" name="singOn" <?php if (isset($singOn) && $singOn=="mail") echo "checked";?> value="mail">Mail
-  <input type="radio" name="singOn" <?php if (isset($singOn) && $singOn=="payroll") echo "checked";?> value="payroll">Payroll
-  <input type="radio" name="singOn" <?php if (isset($singOn) && $singOn=="selfService") echo "checked";?> value="selfService">Self-service
+  <input type="checkbox" name="singOn" <?php if (isset($singOn) && $singOn=="mail") echo "checked";?> value="mail">Mail
+  <input type="checkbox" name="singOn" <?php if (isset($singOn) && $singOn=="payroll") echo "checked";?> value="payroll">Payroll
+  <input type="checkbox" name="singOn" <?php if (isset($singOn) && $singOn=="selfService") echo "checked";?> value="selfService">Self-service
   <span class="error">* <?php echo $singOnErr;?></span><br><br>
   <input type="submit" name="submit" value="Submit">  
 </form>

@@ -9,22 +9,23 @@
 
 <?php
 $name=$_GET["vname"];
-$opcion1=$_GET["opcion1"]
+$opcion1=$_GET["opcion1"];
 ?>
    <h1>Third page</h1>
   
    <form method="post" action="manage2.php">
      <label for="name">Names and surnames: </label>
-      <input type="text" id="name" name="vname" value=<?php echo $name?>>
+      <input type="text" id="name" name="vname" value="<?php echo $name?>">
       <br />
+
       <br>
         <p>lenguajes disponibles:</p>
       <select name="opcion1">
-        <option value="Java"<?php if($opcion1=="Java") ?>>Java Programming</option>
-        <option value="WebDesing" <?php if($opcion1=="WebDesing") ?>>Web Desing</option>
-        <option value="Dockers" <?php if($opcion1=="Docker") ?>>Docker administration</option>
-        <option value="Django" <?php if($opcion1=="Django") ?>>Django frameworks</option>
-        <option value="Mongo" <?php if($opcion1=="Mongo") ?>>Mongo Database</option>
+        <option value="Java"<?php if($opcion1=="Java") echo 'selected' ?>>Java Programming</option>
+        <option value="WebDesing" <?php if($opcion1=="WebDesing") echo 'selected' ?>>Web Desing</option>
+        <option value="Dockers" <?php if($opcion1=="Dockersud")echo 'selected' ?>>Docker administration</option>
+        <option value="Django" <?php if($opcion1=="Django") echo 'selected'?>>Django frameworks</option>
+        <option value="Mongo" <?php if($opcion1=="Mongo")echo 'selected' ?>>Mongo Database</option>
       </select>
       <br>
       <p>type of classes:</p>
