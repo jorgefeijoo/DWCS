@@ -37,6 +37,6 @@ $opcion1=$_COOKIE["opcion1"];
       <br>
       <button type="submit" name="enviar" value="send data">submit</button>
     </form>
-
+    
 </body>
 </html>
