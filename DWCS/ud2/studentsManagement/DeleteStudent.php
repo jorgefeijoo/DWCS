@@ -1,7 +1,5 @@
 <?php
 require_once("Operations.php");
-$id = $_GET["id"];
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,15 +15,19 @@ $id = $_GET["id"];
 
     <p>Are you Sure?</p>
 
-
-    <button id="yes">Yes</button>
-    <br>
-    <button id="no">No</button>
-    <br>
+    <form action="" method="post">
+        <button id="yes" name="confirm_delete">Yes</button>
+        <br>
+        <a href="mainPage.php"><button id="no">No</button></a>
+        <br>
+    </form>
 
     <?php
-    $oper = new Operations();
-    $oper->deleteStudent($id);
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirm_delete"])) {
+        $id = $_GET["id"];
+        $oper = new Operations();
+        $oper->deleteStudent($id);
+    }
     ?>
 
     <a href="mainPage.php">Volver a la pagina Principal</a>
