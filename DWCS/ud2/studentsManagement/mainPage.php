@@ -86,16 +86,22 @@ require_once("Operations.php");
 
     <?php
     foreach ($myStudentList as $student) {
-      echo "<tr> 
-       <td>" . $student->getId() . "</td>
-       <td>" . $student->getDni() . "</td>
-       <td>" . $student->getName() . "</td>
-       <td>" . $student->getSurname() . "</td>
-       <td>" . $student->getAge() . "</td>
-        <td>" . "<button> ✏️ </button>" . "</td>
-        <td>" . "<button> 🗑️ </button>" . "</td>
-
-      </tr>";
+      $id = $student->getId();
+      $dni = $student->getDni();
+      $name = $student->getName();
+      $surname = $student->getSurname();
+      $age = $student->getAge();
+    ?>
+      <tr>
+        <td> <?php echo $id; ?> </td>
+        <td> <?php echo $dni; ?> </td>
+        <td> <?php echo $name; ?> </td>
+        <td><?php echo $surname; ?> </td>
+        <td><?php echo $age; ?> </td>
+        <a href="UpdateStudent.php?id=<?php echo $student->getId(); ?>">✏️</a>
+        <a href="DeleteStudent.php?id=<?php echo $student->getId(); ?>" onclick="return confirm('¿Seguro que deseas eliminar este estudiante?');">🗑️</a>
+      </tr>
+    <?php
     }
 
     ?>
