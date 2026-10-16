@@ -1,6 +1,5 @@
 <?php
 require_once("Operations.php");
-$id = $dni = $name = $surname = $age = "";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +9,38 @@ $id = $dni = $name = $surname = $age = "";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>addStudent</title>
 </head>
+
+<style>
+    form {
+        margin: 20px auto;
+        width: 100%;
+        max-width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    h2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #boton {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: green;
+        border: none;
+        border-radius: 3px;
+    }
+
+    form a {
+        margin-top: 30px;
+        text-decoration: none;
+    }
+</style>
 
 <body>
     <h2>Student</h2>
@@ -23,19 +54,59 @@ $id = $dni = $name = $surname = $age = "";
         return $data;
     }
 
+    $id = $dni = $name = $surname = $age = "";
+    $mensaje = "";
+
     if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["id"])) {
-        $id = $_GET["id"];
-        $dni = $_GET["dni"];
-        $name = $_GET["fname"];
-        $surname = $_GET["lname"];
-        $age = $_GET["age"];
+        $id = test_input($_GET["id"]);
+        $dni = test_input($_GET["dni"]);
+        $name = test_input($_GET["fname"]);
+        $surname = test_input($_GET["lname"]);
+        $age = test_input($_GET["age"]);
     }
     ?>
 
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+        $id = (test_input($_POST["id"] ?? ""));
+        $name = (test_input($_POST["fname"] ?? ""));
+        $surname = (test_input($_POST["lname"] ?? ""));
+        $dni = (test_input($_POST["dni"] ?? ""));
+        $age = (test_input($_POST["age"] ?? ""));
+
+        if (
+            !empty($id) &&
+            !empty($name) &&
+            !empty($surname) &&
+            !empty($dni) &&
+            !empty($age)
+        ) {
+            $oper = new Operations();
+            $student1 = new Student();
+
+            $student1->setId($id);
+            $student1->setName($name);
+            $student1->setSurname($surname);
+            $student1->setDni($dni);
+            $student1->setAge($age);
+
+            $numberOfRows = $oper->updateStudent($student1);
+
+            $mensaje = "Student updated correctly";
+        } else {
+            $id = test_input($_POST["id"]);
+            $name = test_input($_POST["fname"]);
+            $surname = test_input($_POST["lname"]);
+            $dni = test_input($_POST["dni"]);
+            $age = test_input($_POST["age"]);
+
+            $mensaje = "All the fields has been completed";
+        }
+    }
+    ?>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <label for="fname">ID:</label><br>
-        <input type="text" id="id" name="id" value="<?php echo $id ?>"><br>
+        <input hidden type="text" id="id" name="id" value="<?php echo $id ?>"><br>
         <label for="fname">Name:</label><br>
         <input type="text" id="fname" name="fname" value="<?php echo $name ?>"><br>
         <label for="lname">Surname:</label><br>
@@ -44,40 +115,16 @@ $id = $dni = $name = $surname = $age = "";
         <input type="text" id="dni" name="dni" value="<?php echo $dni ?>"><br>
         <label for="age">Age:</label><br>
         <input type="text" id="age" name="age" value="<?php echo $age ?>"><br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" id="boton">
         <br>
         <a href="mainPage.php">Volver a la pagina principal</a>
+
+        <?php
+        echo "<p>$mensaje</p>";
+        ?>
     </form>
 
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        $id_post = $_POST["id"];
-        $name_post = $_POST["fname"];
-        $surname_post = $_POST["lname"];
-        $dni_post = $_POST["dni"];
-        $age_post = $_POST["age"];
-
-        if (
-            !empty($id_post) &&
-            !empty($name_post) &&
-            !empty($surname_post) &&
-            !empty($dni_post) &&
-            !empty($age_post)
-        ) {
-            $oper = new Operations();
-            $student1 = new Student();
-
-            $student1->setId($id_post);
-            $student1->setName($name_post);
-            $student1->setSurname($surname_post);
-            $student1->setDni($dni_post);
-            $student1->setAge($age_post);
-
-            $numberOfRows = $oper->updateStudent($student1);
-        }
-    }
-    ?>
 </body>
 
 </html>

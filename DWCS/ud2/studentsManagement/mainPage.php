@@ -17,6 +17,33 @@ require_once("Operations.php");
       text-align: left;
       padding: 8px;
     }
+
+    #botonAñadir {
+      padding: 10px;
+      background-color: green;
+      width: 40%;
+      border-radius: 3px;
+      border: none;
+    }
+
+    #enlaceBoton {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    #contenedorActions a {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      text-decoration: none;
+    }
+
+    * {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
   </style>
 </head>
 
@@ -65,14 +92,16 @@ require_once("Operations.php");
         $age = $student->getAge();
       ?>
         <tr>
-          <td><?php echo htmlspecialchars($id); ?></td>
-          <td><?php echo htmlspecialchars($dni); ?></td>
-          <td><?php echo htmlspecialchars($name); ?></td>
-          <td><?php echo htmlspecialchars($surname); ?></td>
-          <td><?php echo htmlspecialchars($age); ?></td>
+          <td><?php echo $id; ?></td>
+          <td><?php echo $dni; ?></td>
+          <td><?php echo $name; ?></td>
+          <td><?php echo $surname; ?></td>
+          <td><?php echo $age; ?></td>
           <td>
-            <a href="UpdateStudent.php?id=<?php echo $id; ?>&dni=<?php echo $dni ?>&fname=<?php echo $name ?>&lname=<?php echo $surname ?>&age=<?php echo $age ?>">✏️</a>
-            <a href="DeleteStudent.php?id=<?php echo $id; ?>">🗑️</a>
+            <div id="contenedorActions">
+              <a id="lapiz" href="UpdateStudent.php?id=<?php echo $id; ?>&dni=<?php echo $dni ?>&fname=<?php echo $name ?>&lname=<?php echo $surname ?>&age=<?php echo $age ?>">✏️</a>
+              <a id="papelera" href="DeleteStudent.php?id=<?php echo $id; ?>">🗑️</a>
+            </div>
           </td>
         </tr>
       <?php
@@ -81,8 +110,8 @@ require_once("Operations.php");
     </table>
     <br>
 
-    <a href="AddStudent.php">
-      <button type="button">Add a new student</button>
+    <a href="AddStudent.php" id="enlaceBoton">
+      <button id="botonAñadir" type="button">Add a new student</button>
     </a>
 
   <?php

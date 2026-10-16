@@ -1,5 +1,5 @@
 <?php
-require_once("Operations.php");
+require_once("Operations.php")
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,30 +7,74 @@ require_once("Operations.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Delete Profile</title>
+    <style>
+        h2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+
+        }
+
+        #yes {
+            width: 40%;
+            padding: 10px;
+            background-color: green;
+            border: none;
+            border-radius: 3px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #no {
+            width: 40%;
+            padding: 10px;
+            background-color: red;
+            color: black;
+            border: none;
+            border-radius: 3px;
+            text-decoration: none;
+            text-align: center;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        #enlace {
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
 </head>
 
 <body>
-    <p>You are about to delete this profile</p>
-
-    <p>Are you Sure?</p>
+    <h2>You are about to delete this profile</h2>
+    <h2>Are you Sure?</h2>
 
     <form action="" method="post">
-        <button id="yes" name="confirm_delete">Yes</button>
-        <br>
-        <a href="mainPage.php"><button id="no">No</button></a>
-        <br>
+        <button id="yes" name="confirm_delete" type="submit">Yes</button>
+        <a href="mainPage.php" id="no">No</a>
+        <a href="mainPage.php" id="enlace">Volver a la página Principal</a>
     </form>
 
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["confirm_delete"])) {
-        $id = $_GET["id"];
-        $oper = new Operations();
-        $oper->deleteStudent($id);
+        if (isset($_GET["id"])) {
+            $id = $_GET["id"];
+            $oper = new Operations();
+            $oper->deleteStudent($id);
+            echo "<p style='text-align:center;'>Student deleted correctly</p>";
+        }
     }
     ?>
-
-    <a href="mainPage.php">Volver a la pagina Principal</a>
 </body>
 
 </html>

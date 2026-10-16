@@ -10,6 +10,37 @@ require_once("Operations.php");
     <title>addStudent</title>
 </head>
 
+<style>
+    form {
+        margin: 20px auto;
+        width: 100%;
+        max-width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    h2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #boton {
+        padding: 10px;
+        background-color: green;
+        border: none;
+        border-radius: 3px;
+    }
+
+    form a {
+        margin-top: 30px;
+        text-decoration: none;
+    }
+</style>
+
 <body>
     <h2>Student</h2>
 
@@ -68,8 +99,6 @@ require_once("Operations.php");
         $student1->setAge($age);
 
         $numberOfRows = $oper->addStudent($student1);
-
-        echo "Student added successfully";
     }
     ?>
 
@@ -84,10 +113,14 @@ require_once("Operations.php");
         <label for="age">Age:</label><br>
         <input type="text" id="age" name="age"><br>
         <p>Create new student</p>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" id="boton">
         <br>
         <a href="mainPage.php">Volver a la pagina principal</a>
     </form>
+
+    <?php
+    echo "<p>Student added successfully</p>";
+    ?>
 </body>
 
 </html>
