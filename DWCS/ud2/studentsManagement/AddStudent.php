@@ -119,7 +119,10 @@ require_once("Operations.php");
     </form>
 
     <?php
-    echo "<p>Student added successfully</p>";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        echo "<p style='text-align:center;'>Student add correctly</p>";
+    }
     ?>
 </body>
 

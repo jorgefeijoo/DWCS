@@ -73,6 +73,7 @@ require_once("Operations.php")
             $oper->deleteStudent($id);
             echo "<p style='text-align:center;'>Student deleted correctly</p>";
         }
+    } else {
     }
     ?>
 </body>
