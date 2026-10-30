@@ -69,11 +69,11 @@ require_once("Operations.php");
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        $id = (test_input($_POST["id"] ?? ""));
-        $name = (test_input($_POST["fname"] ?? ""));
-        $surname = (test_input($_POST["lname"] ?? ""));
-        $dni = (test_input($_POST["dni"] ?? ""));
-        $age = (test_input($_POST["age"] ?? ""));
+        $id = (test_input($_POST["id"]));
+        $name = (test_input($_POST["fname"]));
+        $surname = (test_input($_POST["lname"]));
+        $dni = (test_input($_POST["dni"]));
+        $age = (test_input($_POST["age"]));
 
         if (
             !empty($id) &&
