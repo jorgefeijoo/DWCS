@@ -48,9 +48,7 @@ $section = "";
             ?>
         </ul>
 
-        <a href="addPost.php">
-            <input type="submit" value="Add a new post">
-        </a>
+      
 
         <?php
         echo $section
